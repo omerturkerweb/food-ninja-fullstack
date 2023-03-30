@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;900&display=swap");
+:root {
+  --header-top-green: rgba(185, 251, 185, 0.815);
+  --font-montsterrat: "Montserrat", sans-serif;
+  --header-social-hover: rgba(73, 255, 73, 0.708);
+  --header-basket-button: rgb(87, 182, 87);
+  --header-basket-button-hover: rgb(100, 195, 100);
+  --product-name-green: rgb(59, 221, 59);
+  --product-original-name-green: gray;
+  --white: white;
+}
+
+body {
+  font-family: var(--font-montsterrat);
+  color: #333333;
+}
+.border-bottom-black {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+}
+.slide-img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: green;
+  opacity: 0.4;
+  border-radius: 6px;
+}
+.search-input {
+  outline: none;
+  border: none;
+  padding: 7px 15px;
+  width: 350px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.search-input::placeholder {
+  font-size: 13px;
+}
+.search-input-search-icon {
+  padding: 11px 15px;
+  background-color: rgb(91, 210, 91);
+  cursor: pointer;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transition: all 0.4s;
+}
+.search-input-search-icon:hover {
+  background-color: rgb(27, 162, 27);
+}
+.slider-discover-button {
+  outline: none;
+  border: none;
+  padding: 7px 15px;
+  width: 350px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: black;
+  background-color: rgb(130, 254, 102);
+  border: 1px solid white;
+  text-transform: uppercase;
+  transition: all 0.4s;
+}
+.slider-discover-button:hover {
+  border: 1px solid rgb(140, 248, 140);
+  background-color: white;
+}
+
+.categories-icon {
+  border-radius: 10px;
+  transition: all 0.4s;
+  position: absolute;
+  z-index: 1;
+  top: 15%;
+}
+.categories-prev-icon {
+  left: -3%;
+  cursor: pointer;
+}
+.categories-next-icon {
+  right: -3%;
+  cursor: pointer;
+}
+.categories-prev-icon:hover {
+  background-color: rgba(169, 253, 150, 0.608);
+}
+.categories-next-icon:hover {
+  background-color: rgba(169, 253, 150, 0.608);
+}
+
+.category {
+  border-bottom: 1px solid transparent;
+  transition: all 0.6s;
+}
+.category:hover,
+.category.active-category {
+  cursor: pointer;
+  border-bottom: 1px solid rgb(130, 241, 130);
+}
+.product-border {
+  border: 1px solid rgba(128, 128, 128, 0.379);
+  border-radius: 7px;
+}
+.add-product-icon-shadow {
+  transition: all 0.5s;
+  border: 1px solid transparent;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.774);
+}
+.add-product-icon-shadow:hover {
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.326);
+}
