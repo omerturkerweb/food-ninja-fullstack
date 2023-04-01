@@ -1,3 +1,16 @@
+# A simple e-commerce application using React(client-side) and PHP (server-side).
+
+# Functions 
+- login
+- register 
+- add product to basket
+- state managment with global context
+- Metarial UI , React Icons , Tailwindcss
+
+## screenshots 
+![screenshot](https://img001.prntscr.com/file/img001/zKyxvCeOTkinL0tcb0jGgQ.png)
+![screenshot](https://img001.prntscr.com/file/img001/PYsuPyF1Sg-qpBlNcQhUOQ.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
