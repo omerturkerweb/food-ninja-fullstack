@@ -15,9 +15,18 @@ import soup from "../images/categories/soup.png";
 export const GlobalContext = createContext();
 
 export const Provider = ({ children }) => {
+  const [basketShow, setBasketShow] = useState(false);
+  const [basket, setBasket] = useState(() => {
+    if (localStorage.getItem("basket") !== null) {
+      const localBasket = JSON.parse(localStorage.getItem("basket"));
+
+      return localBasket;
+    } else {
+      return [];
+    }
+  });
   const [userData, setUserData] = useState(() => {
     const user = JSON.parse(localStorage.getItem("userData"));
-    console.log(user);
     if (user) {
       return user;
     } else {
@@ -752,6 +761,10 @@ export const Provider = ({ children }) => {
     setLoginSuccess,
     userData,
     setUserData,
+    basket,
+    setBasket,
+    basketShow,
+    setBasketShow,
   };
   return (
     <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>

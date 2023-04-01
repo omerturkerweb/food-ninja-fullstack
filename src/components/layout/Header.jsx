@@ -39,7 +39,29 @@ export default function Header() {
     setRegisterModal,
     user,
     userData,
+    basket,
+    basketShow,
+    setBasketShow,
   } = useContext(GlobalContext);
+  const logoutHandler = () => {
+    localStorage.removeItem("userData");
+    localStorage.removeItem("basket");
+    localStorage.removeItem("theme");
+
+    window.location.reload();
+  };
+
+  const calculateBasket = () => {
+    if (basket.length === 0) {
+      return "0";
+    } else {
+      const basketCount = basket.reduce(
+        (acc, value) => acc + value.productCount,
+        0
+      );
+      return basketCount;
+    }
+  };
 
   return (
     <header className="px-[15%]">
@@ -95,9 +117,31 @@ export default function Header() {
         </div>
         <nav className="flex items-center gap-x-2">
           {userData.user_id ? (
-            <span className="user-avatar p-2 rounded-md cursor-pointer bg-[var(--header-top-green)] text-2xl font-[600]">
-              {GetAvatarName(userData.user_name, userData.user_surname)}
-            </span>
+            <div className="user-nav group relative">
+              <span className="user-avatar p-2 rounded-md cursor-pointer bg-[var(--header-top-green)] text-2xl font-[600]">
+                {GetAvatarName(userData.user_name, userData.user_surname)}
+              </span>
+              <nav className="user-nav-menu flex flex-col items-center justify-center transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 gap-y-2 bg-[var(--white)] absolute p-3 top-14 z-10 -left-3 border-nav">
+                {["orders", "basket", "logout"].map((item, index) => {
+                  return (
+                    <a
+                      onClick={() => {
+                        if (item === "logout") {
+                          logoutHandler();
+                        } else if (item === "basket") {
+                          setBasketShow(true);
+                        }
+                      }}
+                      href="#"
+                      className="transition-all duration-300 hover:bg-[var(--header-nav-green)] p-2 rounded-md"
+                      key={index}
+                    >
+                      {item}
+                    </a>
+                  );
+                })}
+              </nav>
+            </div>
           ) : (
             <>
               <a
@@ -117,9 +161,14 @@ export default function Header() {
             </>
           )}
 
-          <div className="header-basket transition-all duration-300 hover:bg-[var(--header-basket-button-hover)] bg-[var(--header-basket-button)] rounded-md p-3 flex items-center justify-center gap-x-1 text-white cursor-pointer">
+          <div
+            onClick={() => {
+              setBasketShow(true);
+            }}
+            className="header-basket transition-all duration-300 hover:bg-[var(--header-basket-button-hover)] bg-[var(--header-basket-button)] rounded-md p-3 flex items-center justify-center gap-x-1 text-white cursor-pointer"
+          >
             <BsFillBasketFill />
-            <span>0</span>
+            <span>{calculateBasket()}</span>
             <p>items</p>
           </div>
           <button>

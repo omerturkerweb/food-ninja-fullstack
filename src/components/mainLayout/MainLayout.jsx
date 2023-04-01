@@ -1,5 +1,6 @@
 import Login from "../auth/Login";
 import Register from "../auth/Register";
+import Basket from "../layout/Basket";
 import CategorySlider from "../layout/CategorySlider";
 import Header from "../layout/Header";
 import HeroSection from "../layout/HeroSection";
@@ -10,6 +11,7 @@ export default function MainLayout() {
     <>
       <Register />
       <Login />
+      <Basket />
       <Header />
       <HeroSection />
       <CategorySlider />

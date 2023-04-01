@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;900&display=swap");
 :root {
   --header-top-green: rgba(185, 251, 185, 0.815);
+  --header-nav-green: rgba(185, 251, 185, 0.536);
   --font-montsterrat: "Montserrat", sans-serif;
   --header-social-hover: rgba(73, 255, 73, 0.708);
   --header-basket-button: rgb(87, 182, 87);
@@ -8,6 +9,12 @@
   --product-name-green: rgb(59, 221, 59);
   --product-original-name-green: gray;
   --white: white;
+  --basket-backgorund-gradient: linear-gradient(
+    to right,
+    #7ae7ab,
+    rgb(163, 241, 163),
+    #ffffff
+  );
 }
 
 body {
@@ -111,4 +118,20 @@ body {
 .add-product-icon-shadow:hover {
   box-shadow: none;
   border: 1px solid rgba(0, 0, 0, 0.326);
+}
+.border-nav {
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.293);
+}
+.basket-background {
+  background: var(--basket-backgorund-gradient);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.621);
+}
+.apply-basket {
+  border: 1px solid transparent;
+  color: black !important;
+}
+.apply-basket:hover {
+  border: 1px solid var(--white);
+  box-shadow: 0 0 10px white;
 }

@@ -30,7 +30,7 @@ export default function CategorySlider() {
   const settings = {
     infinite: true,
     slidesToShow: 6,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };

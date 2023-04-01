@@ -3,6 +3,15 @@ import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 
 export default function Register() {
+  const {
+    setUser,
+    user,
+    registerModal,
+    setLoginModal,
+    setRegisterModal,
+    setLoginSuccess,
+    setUserData,
+  } = useContext(GlobalContext);
   const postRequestRegister = () => {
     const formData = new FormData();
     formData.append("action", "add-user");
@@ -23,7 +32,12 @@ export default function Register() {
       body: formData,
     })
       .then((response) => response.json())
-      .then((response) => console.log(response))
+      .then((response) => {
+        setLoginModal(false);
+        setLoginSuccess("success");
+        setUserData(response);
+        setUser((user) => ({ ...user, login: true }));
+      })
       .catch((err) => console.log(err));
   };
   const style = {
@@ -35,8 +49,7 @@ export default function Register() {
     padding: "30px 40px",
     borderRadius: "7px",
   };
-  const { setUser, user, registerModal, setLoginModal, setRegisterModal } =
-    useContext(GlobalContext);
+
   const registerFormSubmitHandle = (e) => {
     e.preventDefault();
     if (

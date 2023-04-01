@@ -1,14 +1,27 @@
 import { GrAdd } from "react-icons/gr";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 
 export default function Products() {
-  const { user, setRegisterModal, products, activeCategory } =
-    useContext(GlobalContext);
+  const {
+    user,
+    setUser,
+    userData,
+    setRegisterModal,
+    products,
+    activeCategory,
+    basket,
+    setBasket,
+    setBasketShow,
+  } = useContext(GlobalContext);
   const activeCategoryProducts = products.find(
     (product) => product.tag === activeCategory
   ).products;
-
+  useEffect(() => {
+    if (basket.length !== 0) {
+      localStorage.setItem("basket", JSON.stringify(basket));
+    }
+  }, [basket]);
   return (
     <div className="products-main px-[15%] flex flex-row items-center justify-center flex-wrap my-2 gap-x-20 ">
       {activeCategoryProducts.map((product, index) => {
@@ -25,7 +38,39 @@ export default function Products() {
             ></img>
             <div
               onClick={() => {
-                setRegisterModal(true);
+                if (userData.user_id === 0) {
+                  setRegisterModal(true);
+                } else {
+                  setBasketShow(true);
+                  if (
+                    basket.findIndex(
+                      (item) => item.productName === product.name
+                    ) !== -1
+                  ) {
+                    let productItem = basket.find(
+                      (item) => item.productName === product.name
+                    );
+                    productItem.productCount += 1;
+                    setBasket((prevBasket) => [
+                      ...prevBasket.filter(
+                        (item) => item.productName !== product.name
+                      ),
+                      productItem,
+                    ]);
+                  } else {
+                    setBasket((prevBasket) => [
+                      ...prevBasket,
+                      {
+                        productId: product.id,
+                        productPrice: product.price,
+                        productName: product.name,
+                        productImage: product.image_url,
+                        productOriginalPrice: product.original_price,
+                        productCount: 1,
+                      },
+                    ]);
+                  }
+                }
               }}
               className="add-product absolute top-3 right-3 bg-white p-2 rounded-3xl add-product-icon-shadow"
             >
